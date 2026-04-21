@@ -17,3 +17,16 @@ buttons.forEach(btn => {
     });
   });
 });
+
+function copyMemory() {
+  const text = document.getElementById('memoryBlock').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '복사';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
