@@ -643,54 +643,56 @@ main {
 /* WELCOME PAGE */
 .welcome-page {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 72px;
   min-height: calc(100vh - 100px);
 }
 
 .welcome-inner {
-  max-width: 640px;
+  max-width: 760px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
 }
 
 .welcome-label {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .welcome-heading {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 3rem;
+  font-size: 4.2rem;
   font-weight: 700;
   color: #e8f0f8;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: 0.01em;
 }
 
 .welcome-greeting {
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   color: #e8f0f8;
   font-weight: 500;
+  line-height: 1.5;
 }
 
 .welcome-desc {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--text-dim);
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .welcome-platform,
 .welcome-cta {
-  font-size: 0.92rem;
+  font-size: 1rem;
   color: var(--text-dim);
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .inline-link {
@@ -716,6 +718,29 @@ main {
 }
 
 .inline-link-btn:hover { border-color: var(--accent); }
+
+/* SKILL DOWNLOAD BUTTON */
+.skill-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 4px 0 8px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.skill-dl-btn:hover {
+  background: #7adcf8;
+  transform: translateY(-1px);
+}
 
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 6px; }
