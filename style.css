@@ -36,16 +36,46 @@ header {
   font-weight: 700;
   letter-spacing: 0.02em;
   color: var(--text);
+  cursor: pointer;
+  transition: color 0.2s;
 }
+
+.logo:hover { color: var(--accent); }
 
 .logo .accent {
   color: var(--accent);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 nav {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.lang-btn:hover {
+  border-color: var(--accent);
+  background: rgba(77, 200, 240, 0.1);
 }
 
 .nav-btn {
@@ -609,6 +639,83 @@ main {
   color: #e8f0f8;
   margin: 8px 0 0;
 }
+
+/* WELCOME PAGE */
+.welcome-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px);
+}
+
+.welcome-inner {
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.welcome-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.welcome-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e8f0f8;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.welcome-greeting {
+  font-size: 1.05rem;
+  color: #e8f0f8;
+  font-weight: 500;
+}
+
+.welcome-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.welcome-platform,
+.welcome-cta {
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.inline-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-dim);
+  transition: border-color 0.2s;
+}
+
+.inline-link:hover { border-color: var(--accent); }
+
+.inline-link-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  border-bottom: 1px solid var(--accent-dim);
+  transition: border-color 0.2s;
+  line-height: inherit;
+}
+
+.inline-link-btn:hover { border-color: var(--accent); }
 
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 6px; }
