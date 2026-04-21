@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>*AI Cinema Encyclopédie</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo"><span class="accent">*AI</span> Cinema Encyclopédie</div>
+    <nav>
+      <button class="nav-btn" data-tab="tip">Tip</button>
+      <button class="nav-btn active" data-tab="setup">Setup</button>
+      <button class="nav-btn" data-tab="prompt">Prompt</button>
+      <button class="nav-btn" data-tab="reference">Reference</button>
+    </nav>
+  </header>
+  <div class="divider"></div>
+
+  <main>
+    <!-- TIP -->
+    <section id="tip" class="tab-content hidden">
+      <h2 class="section-title">Tip</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-tag">Workflow</div>
+          <h3>이미지 → 영상 변환 흐름</h3>
+          <p>Stable Diffusion으로 베이스 이미지를 생성한 뒤, Deforum 또는 AnimateDiff로 모션을 추가하는 것이 가장 안정적인 파이프라인입니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Quality</div>
+          <h3>해상도 업스케일</h3>
+          <p>ESRGAN 또는 Real-ESRGAN을 후처리 단계에 추가하면 저해상도 AI 영상을 4K 수준으로 끌어올릴 수 있습니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Consistency</div>
+          <h3>캐릭터 일관성 유지</h3>
+          <p>IP-Adapter + ControlNet Face를 조합하면 멀티컷에서 동일 인물의 얼굴 일관성을 유지할 수 있습니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Lighting</div>
+          <h3>영화적 조명 연출</h3>
+          <p>프롬프트에 "cinematic lighting, volumetric fog, golden hour, rim light" 등의 조명 키워드를 추가하면 영화 같은 분위기를 만들 수 있습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETUP -->
+    <section id="setup" class="tab-content">
+      <h2 class="section-title">Setup</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-tag">Image</div>
+          <h3>ComfyUI</h3>
+          <p>노드 기반 워크플로우로 Stable Diffusion을 사용하는 가장 유연한 UI. 복잡한 파이프라인 구성에 최적화되어 있습니다.</p>
+          <div class="card-meta">권장 VRAM: 8GB+</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">Image</div>
+          <h3>Stable Diffusion WebUI (Forge)</h3>
+          <p>AUTOMATIC1111 기반의 개선된 버전. 메모리 효율이 높고 Extension 생태계가 풍부합니다.</p>
+          <div class="card-meta">권장 VRAM: 6GB+</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">Video</div>
+          <h3>Wan2.1</h3>
+          <p>중국 알리바바의 오픈소스 영상 생성 모델. 텍스트/이미지 → 영상 변환에 강력한 성능을 보여줍니다.</p>
+          <div class="card-meta">권장 VRAM: 12GB+</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">Video</div>
+          <h3>FramePack</h3>
+          <p>이미지를 기반으로 자연스러운 영상을 생성하는 경량 모델. VRAM이 적은 환경에서도 구동 가능합니다.</p>
+          <div class="card-meta">권장 VRAM: 6GB+</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">Video</div>
+          <h3>HunyuanVideo</h3>
+          <p>Tencent의 고품질 영상 생성 모델. 긴 시퀀스와 복잡한 모션 표현에 강합니다.</p>
+          <div class="card-meta">권장 VRAM: 24GB+</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">Audio</div>
+          <h3>ElevenLabs / Suno</h3>
+          <p>AI 보이스 생성(ElevenLabs)과 BGM 생성(Suno)을 조합하면 영상에 필요한 사운드를 빠르게 제작할 수 있습니다.</p>
+          <div class="card-meta">클라우드 서비스</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMPT -->
+    <section id="prompt" class="tab-content hidden">
+      <h2 class="section-title">Prompt</h2>
+      <div class="card-grid">
+        <div class="card wide">
+          <div class="card-tag">Structure</div>
+          <h3>프롬프트 기본 구조</h3>
+          <div class="prompt-structure">
+            <span class="tag-pill">주제</span>
+            <span class="tag-sep">+</span>
+            <span class="tag-pill">스타일</span>
+            <span class="tag-sep">+</span>
+            <span class="tag-pill">조명</span>
+            <span class="tag-sep">+</span>
+            <span class="tag-pill">카메라</span>
+            <span class="tag-sep">+</span>
+            <span class="tag-pill">품질 태그</span>
+          </div>
+          <div class="code-block">a lone samurai standing in the rain, cinematic film still, neon-lit alley, shallow depth of field, anamorphic lens flare, 8k, photorealistic</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">Camera</div>
+          <h3>카메라 키워드</h3>
+          <ul class="keyword-list">
+            <li><span>extreme close-up</span> — 극단적 클로즈업</li>
+            <li><span>bird's eye view</span> — 부감 샷</li>
+            <li><span>dutch angle</span> — 기울어진 앵글</li>
+            <li><span>tracking shot</span> — 트래킹 샷</li>
+            <li><span>dolly zoom</span> — 버티고 효과</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-tag">Style</div>
+          <h3>스타일 키워드</h3>
+          <ul class="keyword-list">
+            <li><span>film noir</span> — 누아르 분위기</li>
+            <li><span>cyberpunk aesthetic</span> — 사이버펑크</li>
+            <li><span>Studio Ghibli style</span> — 지브리풍</li>
+            <li><span>Wes Anderson palette</span> — 웨스 앤더슨풍</li>
+            <li><span>chiaroscuro lighting</span> — 명암 대비</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-tag">Negative</div>
+          <h3>네거티브 프롬프트</h3>
+          <ul class="keyword-list">
+            <li><span>blurry, deformed</span> — 흐릿함, 변형</li>
+            <li><span>bad anatomy</span> — 신체 비율 오류</li>
+            <li><span>watermark, text</span> — 워터마크</li>
+            <li><span>low quality, jpeg</span> — 저품질</li>
+            <li><span>extra limbs</span> — 팔다리 추가 생성</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFERENCE -->
+    <section id="reference" class="tab-content hidden">
+      <h2 class="section-title">Reference</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-tag">모델 허브</div>
+          <h3>CivitAI</h3>
+          <p>Stable Diffusion 계열 모델, LoRA, Embedding을 공유하는 최대 커뮤니티. 검색 필터로 원하는 스타일의 모델을 쉽게 찾을 수 있습니다.</p>
+          <div class="card-meta">civitai.com</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">모델 허브</div>
+          <h3>Hugging Face</h3>
+          <p>오픈소스 AI 모델의 허브. Wan2.1, HunyuanVideo 등 주요 영상 생성 모델을 다운로드할 수 있습니다.</p>
+          <div class="card-meta">huggingface.co</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">커뮤니티</div>
+          <h3>Reddit r/StableDiffusion</h3>
+          <p>SD 관련 최신 정보, 팁, 워크플로우를 공유하는 가장 활성화된 영어권 커뮤니티입니다.</p>
+          <div class="card-meta">reddit.com/r/StableDiffusion</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">워크플로우</div>
+          <h3>OpenArt Workflows</h3>
+          <p>ComfyUI 워크플로우를 공유하고 바로 불러올 수 있는 플랫폼. 복잡한 파이프라인을 빠르게 시작할 수 있습니다.</p>
+          <div class="card-meta">openart.ai/workflows</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">클라우드</div>
+          <h3>RunPod / Vast.ai</h3>
+          <p>로컬 GPU가 없어도 고사양 GPU를 시간당 렌탈하여 AI 영상 생성을 할 수 있는 클라우드 서비스입니다.</p>
+          <div class="card-meta">runpod.io / vast.ai</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">유튜브</div>
+          <h3>Olivio Sarikas</h3>
+          <p>SD, ComfyUI, 영상 생성 관련 튜토리얼을 꾸준히 업로드하는 유튜브 채널. 초보자부터 고급 사용자까지 유용합니다.</p>
+          <div class="card-meta">YouTube</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
