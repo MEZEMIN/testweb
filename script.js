@@ -18,6 +18,28 @@ buttons.forEach(btn => {
   });
 });
 
+// Compact card → modal
+document.querySelectorAll('.pcard').forEach(card => {
+  card.addEventListener('click', () => {
+    const id = card.dataset.modal;
+    document.getElementById(id).classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeModal() {
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-overlay')) closeModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
 function copyMemory() {
   const text = document.getElementById('memoryBlock').innerText;
   navigator.clipboard.writeText(text).then(() => {
