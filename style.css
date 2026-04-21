@@ -642,11 +642,23 @@ main {
 
 /* WELCOME PAGE */
 .welcome-page {
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-top: 72px;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.welcome-figure {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-10%);
+  width: 620px;
+  pointer-events: none;
+  user-select: none;
 }
 
 .welcome-inner {
