@@ -111,6 +111,8 @@ function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
   document.documentElement.lang = lang;
+  const label = document.getElementById('langLabel');
+  if (label) label.textContent = lang === 'ko' ? '한국어' : 'English';
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
