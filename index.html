@@ -1,465 +1,1021 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>*AI Cinema Encyclopédie</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header>
-    <div class="logo" id="logoBtn"><span class="accent">*AI</span> Cinema Encyclopédie</div>
-    <div class="header-right">
-      <nav>
-        <button class="nav-btn" data-tab="zemistein">Zemistein</button>
-        <button class="nav-btn active" data-tab="welcome" data-i18n="nav_welcome">Welcome</button>
-        <button class="nav-btn" data-tab="setup" data-i18n="nav_setup">Setup</button>
-        <button class="nav-btn" data-tab="prompt" data-i18n="nav_prompt">Prompt</button>
-        <button class="nav-btn" data-tab="reference" data-i18n="nav_reference">Reference</button>
-      </nav>
-      <button class="lang-btn" onclick="toggleLang()">🌎 <span id="langLabel">한국어</span></button>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jaemin's birthday wishlist — nine hand-picked gifts and where to find them."
+    />
+    <meta name="theme-color" content="#19151f" />
+    <title>Jaemin's Birthday Wishlist</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+
+    <style>
+      :root {
+        --ink: #1d1821;
+        --muted: #736d78;
+        --paper: #fffdf8;
+        --orange: #ff5c1a;
+        --orange-dark: #e84200;
+        --pink: #ff9db1;
+        --line: rgba(29, 24, 33, 0.12);
+        --display: "Bowlby One", "Arial Rounded MT Bold", sans-serif;
+        --body: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        padding: 10px;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 12% 8%, rgba(255, 92, 26, 0.22), transparent 22rem),
+          radial-gradient(circle at 92% 64%, rgba(163, 111, 255, 0.16), transparent 25rem),
+          #19151f;
+        font-family: var(--body);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+        background-size: 22px 22px;
+        content: "";
+        mask-image: linear-gradient(to bottom, black, transparent 75%);
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page-shell {
+        position: relative;
+        width: min(100%, 660px);
+        min-height: 100vh;
+        margin-inline: auto;
+        overflow: clip;
+        border-radius: 34px;
+        background: var(--paper);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+      }
+
+      .hero {
+        position: relative;
+        display: grid;
+        min-height: min(760px, 92svh);
+        padding: 46px 24px 34px;
+        overflow: hidden;
+        place-items: center;
+        text-align: center;
+        isolation: isolate;
+      }
+
+      .hero::before {
+        position: absolute;
+        top: 13%;
+        left: 50%;
+        z-index: -2;
+        width: 470px;
+        aspect-ratio: 1;
+        border-radius: 47% 53% 58% 42% / 44% 38% 62% 56%;
+        background: #fff0c9;
+        content: "";
+        transform: translateX(-50%) rotate(-8deg);
+        animation: blob-drift 10s ease-in-out infinite alternate;
+      }
+
+      .hero::after {
+        position: absolute;
+        right: -72px;
+        bottom: 8%;
+        z-index: -1;
+        width: 190px;
+        aspect-ratio: 1;
+        border: 34px solid #ffd0dc;
+        border-radius: 50%;
+        content: "";
+      }
+
+      .hero-content {
+        width: 100%;
+        max-width: 570px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 24px;
+        padding: 9px 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 253, 248, 0.72);
+        box-shadow: 0 8px 30px rgba(40, 26, 20, 0.06);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+      }
+
+      .eyebrow-dot {
+        width: 8px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--orange);
+        box-shadow: 0 0 0 5px rgba(255, 92, 26, 0.13);
+        animation: dot-pulse 2s ease-in-out infinite;
+      }
+
+      h1 {
+        max-width: 580px;
+        margin: 0 auto;
+        color: var(--orange);
+        font-family: var(--display);
+        font-size: clamp(2.15rem, 10.2vw, 4.6rem);
+        font-weight: 400;
+        letter-spacing: -0.055em;
+        line-height: 0.91;
+        text-wrap: balance;
+        text-transform: uppercase;
+        transform: rotate(-1.4deg);
+        text-shadow: 4px 5px 0 #ffd6a7;
+        animation: title-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      h1 span {
+        display: block;
+      }
+
+      .hero-copy {
+        max-width: 360px;
+        margin: 28px auto 0;
+        color: #4e4652;
+        font-size: clamp(1rem, 4vw, 1.15rem);
+        line-height: 1.55;
+        text-wrap: balance;
+        animation: fade-up 0.7s 0.25s ease both;
+      }
+
+      .wish-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 28px;
+        animation: fade-up 0.7s 0.4s ease both;
+      }
+
+      .wish-count strong {
+        display: grid;
+        width: 48px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        color: white;
+        background: var(--ink);
+        font-family: var(--display);
+        font-size: 1.15rem;
+        font-weight: 400;
+        place-items: center;
+        transform: rotate(7deg);
+      }
+
+      .wish-count span {
+        font-size: 0.79rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .scroll-cue {
+        position: absolute;
+        bottom: 28px;
+        left: 50%;
+        display: grid;
+        width: 42px;
+        height: 62px;
+        border: 2px solid var(--ink);
+        border-radius: 999px;
+        background: rgba(255, 253, 248, 0.64);
+        transform: translateX(-50%);
+        place-items: start center;
+      }
+
+      .scroll-cue::after {
+        width: 6px;
+        height: 12px;
+        margin-top: 10px;
+        border-radius: 999px;
+        background: var(--orange);
+        content: "";
+        animation: scroll-drop 1.8s ease-in-out infinite;
+      }
+
+      .spark {
+        position: absolute;
+        z-index: -1;
+        color: var(--orange);
+        font-family: var(--display);
+        line-height: 1;
+        user-select: none;
+      }
+
+      .spark-one {
+        top: 16%;
+        left: 7%;
+        font-size: 2.4rem;
+        animation: spin-soft 8s linear infinite;
+      }
+
+      .spark-two {
+        top: 28%;
+        right: 7%;
+        color: #a36fff;
+        font-size: 1.8rem;
+        animation: spin-soft 6s linear infinite reverse;
+      }
+
+      .spark-three {
+        bottom: 18%;
+        left: 10%;
+        color: #fb8daa;
+        font-size: 2rem;
+        animation: dot-pulse 2.4s ease-in-out infinite;
+      }
+
+      .gift-list {
+        position: relative;
+        padding: 22px 16px 38px;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 0 8px 28px;
+      }
+
+      .section-heading p {
+        margin: 0 0 7px;
+        color: var(--orange);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        font-weight: 400;
+        letter-spacing: -0.035em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .section-heading .squiggle {
+        flex: 0 0 74px;
+        color: var(--orange);
+      }
+
+      .product-card {
+        --stage: #f2e9dd;
+        position: relative;
+        margin-bottom: 18px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 32px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 14px 38px rgba(38, 27, 42, 0.07);
+      }
+
+      .product-card:nth-of-type(2) { --stage: #f9dfe1; }
+      .product-card:nth-of-type(3) { --stage: #dcefea; }
+      .product-card:nth-of-type(4) { --stage: #e8e7f8; }
+      .product-card:nth-of-type(5) { --stage: #efe0c5; }
+      .product-card:nth-of-type(6) { --stage: #dbeaf5; }
+      .product-card:nth-of-type(7) { --stage: #ffe3cb; }
+      .product-card:nth-of-type(8) { --stage: #e3efd6; }
+      .product-card:nth-of-type(9) { --stage: #e5ddf0; }
+      .product-card:nth-of-type(10) { --stage: #f5d9d4; }
+
+      .card-topline {
+        position: absolute;
+        top: 30px;
+        right: 28px;
+        left: 28px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        pointer-events: none;
+      }
+
+      .product-number,
+      .category {
+        display: inline-flex;
+        min-height: 34px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        box-shadow: 0 6px 20px rgba(27, 22, 30, 0.08);
+      }
+
+      .product-number {
+        min-width: 42px;
+        padding-inline: 11px;
+        color: white;
+        background: var(--ink);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .category {
+        padding-inline: 13px;
+        border: 1px solid rgba(29, 24, 33, 0.1);
+        background: rgba(255, 255, 255, 0.74);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+      }
+
+      .product-media {
+        position: relative;
+        display: grid;
+        min-height: clamp(330px, 104vw, 560px);
+        overflow: hidden;
+        border-radius: 23px;
+        background:
+          radial-gradient(circle at 72% 22%, rgba(255, 255, 255, 0.82), transparent 25%),
+          var(--stage);
+        place-items: center;
+        isolation: isolate;
+      }
+
+      .product-media::before {
+        position: absolute;
+        width: 68%;
+        aspect-ratio: 1;
+        border: 1px solid rgba(29, 24, 33, 0.1);
+        border-radius: 50%;
+        content: "";
+        transform: scale(0.9);
+        transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .product-media::after {
+        position: absolute;
+        bottom: 13%;
+        width: 58%;
+        height: 8%;
+        border-radius: 50%;
+        background: rgba(36, 26, 40, 0.16);
+        filter: blur(18px);
+        content: "";
+        transform: scaleX(0.85);
+      }
+
+      .product-image {
+        position: relative;
+        z-index: 1;
+        width: 90%;
+        height: clamp(290px, 92vw, 500px);
+        object-fit: contain;
+        filter: drop-shadow(0 22px 18px rgba(34, 25, 36, 0.18));
+        transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        animation: product-float 5s ease-in-out infinite;
+      }
+
+      .product-card:nth-of-type(even) .product-image {
+        animation-delay: -2.2s;
+      }
+
+      .product-card:hover .product-image,
+      .product-card:focus-within .product-image {
+        transform: translateY(-8px) rotate(1.5deg) scale(1.035);
+      }
+
+      .product-card:hover .product-media::before,
+      .product-card:focus-within .product-media::before {
+        transform: scale(1.08);
+      }
+
+      .photo-card .product-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        filter: none;
+        object-fit: cover;
+        animation: none;
+      }
+
+      .photo-card .product-media::before,
+      .photo-card .product-media::after {
+        display: none;
+      }
+
+      .wide-product .product-image {
+        width: 98%;
+      }
+
+      .product-info {
+        padding: 25px 8px 12px;
+        text-align: center;
+      }
+
+      .product-kicker {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .product-name {
+        max-width: 520px;
+        margin: 0 auto;
+        font-size: clamp(1.35rem, 6vw, 2.05rem);
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 1.08;
+        text-wrap: balance;
+      }
+
+      .product-price {
+        margin: 12px 0 19px;
+        color: var(--orange-dark);
+        font-family: var(--display);
+        font-size: clamp(1.25rem, 5.4vw, 1.7rem);
+        font-weight: 400;
+        letter-spacing: -0.025em;
+      }
+
+      .buy-button {
+        position: relative;
+        display: inline-flex;
+        min-height: 58px;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        overflow: hidden;
+        padding: 0 24px;
+        border: 2px solid var(--orange);
+        border-radius: 999px;
+        color: white;
+        background: var(--orange);
+        box-shadow: 0 9px 0 #b93000, 0 16px 25px rgba(255, 92, 26, 0.22);
+        font-family: var(--display);
+        font-size: 0.92rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transform: translateY(0);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          background 0.18s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .buy-button::before {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.38), transparent 70%);
+        content: "";
+        transform: translateX(-120%);
+        transition: transform 0.6s ease;
+      }
+
+      .buy-button svg {
+        width: 19px;
+        transition: transform 0.25s ease;
+      }
+
+      .buy-button:hover,
+      .buy-button:focus-visible {
+        background: #ff6d32;
+        box-shadow: 0 6px 0 #b93000, 0 12px 20px rgba(255, 92, 26, 0.24);
+        outline: none;
+        transform: translateY(3px);
+      }
+
+      .buy-button:hover::before,
+      .buy-button:focus-visible::before {
+        transform: translateX(120%);
+      }
+
+      .buy-button:hover svg,
+      .buy-button:focus-visible svg {
+        transform: translateX(4px) rotate(-8deg);
+      }
+
+      .buy-button:active {
+        box-shadow: 0 2px 0 #b93000;
+        transform: translateY(7px) scale(0.98);
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 50%;
+        right: max(10px, calc((100vw - 660px) / 2 + 10px));
+        z-index: 20;
+        width: 7px;
+        height: 124px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(29, 24, 33, 0.11);
+        transform: translateY(-50%);
+      }
+
+      .scroll-progress span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--orange);
+        transform: scaleY(0);
+        transform-origin: top;
+        will-change: transform;
+      }
+
+      .footer {
+        position: relative;
+        padding: 72px 24px 54px;
+        overflow: hidden;
+        color: white;
+        background: var(--ink);
+        text-align: center;
+      }
+
+      .footer::before {
+        position: absolute;
+        top: -85px;
+        left: -45px;
+        width: 210px;
+        aspect-ratio: 1;
+        border: 38px solid var(--orange);
+        border-radius: 50%;
+        content: "";
+        opacity: 0.9;
+      }
+
+      .footer-star {
+        position: relative;
+        display: inline-grid;
+        width: 62px;
+        aspect-ratio: 1;
+        margin-bottom: 24px;
+        border-radius: 19px;
+        color: var(--ink);
+        background: #ffd65a;
+        font-size: 1.8rem;
+        transform: rotate(9deg);
+        place-items: center;
+      }
+
+      .footer h2 {
+        position: relative;
+        max-width: 480px;
+        margin: 0 auto;
+        font-family: var(--display);
+        font-size: clamp(2.2rem, 10vw, 4.4rem);
+        font-weight: 400;
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+        text-transform: uppercase;
+        text-wrap: balance;
+      }
+
+      .footer p {
+        position: relative;
+        max-width: 390px;
+        margin: 22px auto 0;
+        color: #c9c2cd;
+        font-size: 0.87rem;
+        line-height: 1.65;
+      }
+
+      .footer .price-note {
+        margin-top: 40px;
+        color: #918995;
+        font-size: 0.7rem;
+        letter-spacing: 0.04em;
+      }
+
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(34px) scale(0.985);
+        transition:
+          opacity 0.7s ease,
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .js .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      @keyframes title-in {
+        from { opacity: 0; transform: translateY(28px) rotate(-3deg) scale(0.94); }
+        to { opacity: 1; transform: translateY(0) rotate(-1.4deg) scale(1); }
+      }
+
+      @keyframes fade-up {
+        from { opacity: 0; transform: translateY(14px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes blob-drift {
+        to { border-radius: 58% 42% 42% 58% / 52% 55% 45% 48%; transform: translateX(-50%) rotate(5deg) scale(1.04); }
+      }
+
+      @keyframes spin-soft {
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes dot-pulse {
+        50% { transform: scale(1.22); }
+      }
+
+      @keyframes scroll-drop {
+        0% { opacity: 0; transform: translateY(0); }
+        30% { opacity: 1; }
+        70% { opacity: 1; }
+        100% { opacity: 0; transform: translateY(26px); }
+      }
+
+      @keyframes product-float {
+        0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+        50% { transform: translateY(-8px) rotate(0.6deg); }
+      }
+
+      @media (min-width: 661px) {
+        body {
+          padding: 36px 0;
+        }
+
+        .page-shell {
+          border-radius: 48px;
+        }
+
+        .hero {
+          padding-inline: 42px;
+        }
+
+        .gift-list {
+          padding: 30px 28px 54px;
+        }
+
+        .product-card {
+          padding: 18px;
+          border-radius: 38px;
+        }
+
+        .product-media {
+          border-radius: 28px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .hero {
+          min-height: 760px;
+        }
+
+        .hero::before {
+          width: 390px;
+        }
+
+        .product-media {
+          min-height: 350px;
+        }
+
+        .product-image {
+          height: 315px;
+        }
+
+        .photo-card .product-media {
+          min-height: 390px;
+        }
+
+        .section-heading .squiggle {
+          flex-basis: 58px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .js .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <span class="spark spark-one" aria-hidden="true">✦</span>
+        <span class="spark spark-two" aria-hidden="true">✦</span>
+        <span class="spark spark-three" aria-hidden="true">●</span>
+
+        <div class="hero-content">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Birthday wishlist · 2026</p>
+          <h1><span>Jaemin's</span><span>Birthday</span><span>Wishlist</span></h1>
+          <p class="hero-copy">A small collection of big wishes, gathered in one happy place.</p>
+          <div class="wish-count" aria-label="Nine birthday wishes">
+            <strong>09</strong>
+            <span>wishes inside</span>
+          </div>
+        </div>
+
+        <a class="scroll-cue" href="#gifts" aria-label="Scroll to the gift list"></a>
+      </header>
+
+      <main id="gifts" class="gift-list">
+        <div class="section-heading reveal">
+          <div>
+            <p>The wish list</p>
+            <h2>Pick a favorite</h2>
+          </div>
+          <svg class="squiggle" viewBox="0 0 80 36" fill="none" aria-hidden="true">
+            <path d="M3 18c8-16 16 16 25 0s17 16 25 0 16 16 24 0" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <article class="product-card reveal">
+          <div class="card-topline">
+            <span class="product-number">01</span>
+            <span class="category">Wear it</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/1 Winged-Logo Twill Ball Cap.png" alt="Pink Winged-Logo Twill Ball Cap on a wooden display head" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">RRL</p>
+            <h2 class="product-name">Winged-Logo Twill Ball Cap</h2>
+            <p class="product-price">CA$115.00</p>
+            <a class="buy-button" href="https://www.ralphlauren.ca/brands-double-rl-men-shop-all-cg/winged-logo-twill-ball-cap/538867.html" target="_blank" rel="noopener noreferrer" aria-label="Buy Winged-Logo Twill Ball Cap">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card reveal">
+          <div class="card-topline">
+            <span class="product-number">02</span>
+            <span class="category">Power up</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/2 Anker Prime Power Bank.png" alt="Anker Prime Power Bank with a color charging display" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">Anker</p>
+            <h2 class="product-name">Anker Prime Power Bank</h2>
+            <p class="product-price">CA$279.99</p>
+            <a class="buy-button" href="https://www.amazon.ca/dp/B0F66LNB8D" target="_blank" rel="noopener noreferrer" aria-label="Buy Anker Prime Power Bank">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card photo-card reveal">
+          <div class="card-topline">
+            <span class="product-number">03</span>
+            <span class="category">Collect it</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/3 YOLOPARK Transformers G1.jpg" alt="YOLOPARK Transformers G1 Optimus Prime figure" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">YOLOPARK</p>
+            <h2 class="product-name">YOLOPARK Transformers G1</h2>
+            <p class="product-price">CA$44.09</p>
+            <a class="buy-button" href="https://www.amazon.ca/dp/B0F7LJ65J7" target="_blank" rel="noopener noreferrer" aria-label="Buy YOLOPARK Transformers G1">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card wide-product reveal">
+          <div class="card-topline">
+            <span class="product-number">04</span>
+            <span class="category">LEGO Icons</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/4 LEGO Icons Dune Atreides Royal Ornithopter.png" alt="LEGO Dune Atreides Royal Ornithopter with minifigures" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">LEGO · Dune</p>
+            <h2 class="product-name">LEGO Icons Dune Atreides Royal Ornithopter</h2>
+            <p class="product-price">CA$179.98</p>
+            <a class="buy-button" href="https://www.amazon.ca/dp/B0CGXZS3J6" target="_blank" rel="noopener noreferrer" aria-label="Buy LEGO Icons Dune Atreides Royal Ornithopter">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card wide-product reveal">
+          <div class="card-topline">
+            <span class="product-number">05</span>
+            <span class="category">Create it</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/5 HUION Kamvas 13 Graphics Drawing Tablet.png" alt="HUION Kamvas 13 drawing tablet with stylus" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">HUION</p>
+            <h2 class="product-name">HUION Kamvas 13 Graphics Drawing Tablet</h2>
+            <p class="product-price">CA$289.99</p>
+            <a class="buy-button" href="https://www.amazon.ca/dp/B088GWVHYK" target="_blank" rel="noopener noreferrer" aria-label="Buy HUION Kamvas 13 Graphics Drawing Tablet">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card reveal">
+          <div class="card-topline">
+            <span class="product-number">06</span>
+            <span class="category">LEGO Icons</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/6 Back to the Future Time Machine.png" alt="LEGO Back to the Future Time Machine set" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">LEGO · Back to the Future</p>
+            <h2 class="product-name">Back to the Future Time Machine</h2>
+            <p class="product-price">CA$249.99</p>
+            <a class="buy-button" href="https://www.lego.com/en-ca/product/back-to-the-future-time-machine-10300" target="_blank" rel="noopener noreferrer" aria-label="Buy Back to the Future Time Machine">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card wide-product reveal">
+          <div class="card-topline">
+            <span class="product-number">07</span>
+            <span class="category">LEGO Icons</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/7 Porsche 911.png" alt="White LEGO Porsche 911 model" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">LEGO · Porsche</p>
+            <h2 class="product-name">Porsche 911</h2>
+            <p class="product-price">CA$209.99</p>
+            <a class="buy-button" href="https://www.lego.com/en-ca/product/porsche-911-10295" target="_blank" rel="noopener noreferrer" aria-label="Buy Porsche 911">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card wide-product reveal">
+          <div class="card-topline">
+            <span class="product-number">08</span>
+            <span class="category">Play it</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/8 8BitDo Pro 2.png" alt="8BitDo Pro 2 wireless game controller" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">8BitDo</p>
+            <h2 class="product-name">8BitDo Pro 2</h2>
+            <p class="product-price">CA$64.18</p>
+            <a class="buy-button" href="https://www.amazon.ca/dp/B0CSPGMGBT" target="_blank" rel="noopener noreferrer" aria-label="Buy 8BitDo Pro 2">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card wide-product reveal">
+          <div class="card-topline">
+            <span class="product-number">09</span>
+            <span class="category">Desk setup</span>
+          </div>
+          <div class="product-media">
+            <img class="product-image" src="asset/9 8Bitdo Retro Mechanical Keyboard.png" alt="8Bitdo Retro Mechanical Keyboard with two red super buttons" />
+          </div>
+          <div class="product-info">
+            <p class="product-kicker">8Bitdo</p>
+            <h2 class="product-name">8Bitdo Retro Mechanical Keyboard</h2>
+            <p class="product-price">CA$145.99</p>
+            <a class="buy-button" href="https://www.amazon.ca/dp/B0CCP8KYGG" target="_blank" rel="noopener noreferrer" aria-label="Buy 8Bitdo Retro Mechanical Keyboard">
+              Buy gift
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
+          </div>
+        </article>
+      </main>
+
+      <footer class="footer">
+        <span class="footer-star" aria-hidden="true">★</span>
+        <h2>Thanks for making my day extra special.</h2>
+        <p>Every gift is a lovely thought. The best part is celebrating together.</p>
+        <p class="price-note">Prices shown in Canadian dollars and checked August 16, 2026. Retail prices may change.</p>
+      </footer>
     </div>
-  </header>
-  <div class="divider"></div>
 
-  <main>
-    <!-- ZEMISTEIN -->
-    <section id="zemistein" class="tab-content hidden zemistein-page">
-      <a class="zemistein-thumb-link" href="https://youtu.be/lgILl71Ya2E?si=LvM66uPyZMcl_chW" target="_blank" rel="noopener">
-        <div class="zemistein-thumb-wrap">
-          <img src="https://img.youtube.com/vi/lgILl71Ya2E/maxresdefault.jpg" alt="Zemistein">
-          <div class="zemistein-play">&#9654;</div>
-        </div>
-      </a>
-    </section>
-
-    <!-- WELCOME -->
-    <section id="welcome" class="tab-content welcome-page">
-      <div class="welcome-inner">
-        <div class="welcome-label" data-i18n="nav_welcome">Welcome</div>
-        <h1 class="welcome-heading"><span class="accent">*AI</span> Cinema Encyclopédie</h1>
-        <p class="welcome-greeting" data-i18n="welcome_greeting">*AI Cinema Encyclopédie에 오신것을 환영합니다.</p>
-        <p class="welcome-desc" data-i18n="welcome_desc">*AI Cinema Encyclopédie는 AI를 이용해 시네마틱한 사진/영상을 제작하는 법과 팁을 공유하는 백과사전입니다.</p>
-        <p class="welcome-platform" data-i18n-html="welcome_platform">이 페이지의 대부분의 설명이나 튜토리얼은 <a href="https://higgsfield.ai/" target="_blank" class="inline-link">higgsfield.ai</a>를 사용한다는 가정 하에 제작되었습니다.</p>
-        <p class="welcome-cta" data-i18n-html="welcome_cta">처음 오신분은 <button class="inline-link-btn" onclick="goToTab('setup')">Setup</button>으로 가서 본인이 사용중인 AI를 셋업하는 것을 추천합니다.</p>
-        <img class="welcome-figure" src="Design/zemistein_laying.png" alt="">
-      </div>
-    </section>
-
-    <!-- SETUP -->
-    <section id="setup" class="tab-content hidden">
-      <h2 class="section-title" data-i18n="nav_setup">Setup</h2>
-      <div class="card-grid">
-        <div class="card wide">
-          <div class="card-tag" data-i18n="setup_card_tag">Claude</div>
-          <h3 data-i18n="setup_card_title">클로드를 이미지/영상 제작 프롬프트로 세팅하기</h3>
-          <p class="setup-desc" data-i18n-html="setup_card_desc">아래 내용을 전체 복사한 뒤, <strong>Claude 설정 → 일반 → 개인 맞춤설정</strong> 항목에 붙여넣으세요.<br>이후 클로드가 이미지/영상 프롬프트 요청에 자동으로 최적화된 방식으로 응답합니다.</p>
-          <div class="copy-wrap">
-            <button class="copy-btn" id="copyBtn" onclick="copyMemory()" data-i18n="copy_btn">복사</button>
-            <pre class="memory-block" id="memoryBlock">### 대화 모드 구분
-
-- 실행 요청 (만들어줘, 작성해줘, 변환해줘 등) : 바로 실행
-- 사고/판단 요청 (어떻게 할까, 어떤 방향이 좋을까, 고민이야 등) : 소크라테스 모드
-
-### 소크라테스 모드 규칙
-
-- 바로 답을 주지 말고, 핵심을 짚는 질문을 1개씩 던져라
-- 내 답변을 바탕으로 다음 질문으로 깊이를 넓혀라
-- 내가 스스로 결론에 도달하도록 유도하라
-- 충분히 탐구했다고 판단되면 대화 내용을 요약 정리하라
-- 내가 "정리해줘" 또는 "결론 내줘"라고 하면 소크라테스 모드를 종료하고 정리하라
-
-###작업을 시작하기 전에 메모리를 많이 사용할거같으면 미리 경고해줘
-
-### 패션/의류 AI 프롬프트 서브 템플릿
-
-**적용 조건:** 패션 룩, 의상 디자인, 스타일링 이미지 프롬프트 요청 시 자동 적용
-
-**구조 (위→아래 스캔 순서):**
-[상의 스펙] → [하의 스펙] → [신발] → [노출/실루엣] → [액세서리] → (선택) [무드 한 줄]
-
-**핵심 원칙:**
-1. 아이템별 독립 블록으로 작성 — 각 의류를 별도 문장/단락으로 분리
-2. 추상어 제로, 물성 100% — "cool" "stylish" 금지 → 소재(latex, denim, ripstop), 마감(high gloss, matte, distressed), 구조(knee pad panels, side pockets, gathered at ankle)로 대체
-3. 무드는 아이템 조합으로 유도 — 직접 분위기를 설명하지 말고 소재+실루엣 조합이 무드를 만들게 할 것. 필요시 마지막에 한 줄 태그만 추가 (예: "street style meets tactical utility")
-4. 색상은 대비 명시 — 피부톤과 혼동 가능한 색상(nude, beige, mustard 등)은 "distinctly different from skin tone" 또는 대비 배경색 지정
-5. 촬영 조건은 최소화 — 의류 디테일 반영률 우선. 촬영 조건이 필요하면 배경(studio white, concrete floor)과 크롭(full body, waist-up)만 간결하게 추가
-
-**작성 예시:**
-```
-MIDNIGHT NAVY VELVET BLAZER, DOUBLE-BREASTED, PEAK LAPEL,
-SLIGHTLY OVERSIZED FIT, DEEP PILE TEXTURE.
-
-WIDE-LEG IVORY SILK TROUSERS, HIGH WAIST,
-FLUID DRAPE, PRESSED CENTER CREASE, NO BELT LOOPS.
-
-BLACK PATENT LEATHER POINTED-TOE ANKLE BOOTS,
-STILETTO HEEL, 80MM HEIGHT.
-
-EXPOSED COLLARBONE. MINIMAL JEWELRY — SINGLE THIN GOLD CHAIN.
-
-EDITORIAL MINIMALISM MEETS OLD MONEY QUIET LUXURY.
-```
-
-**기존 범용 구조와의 관계:**
-- 범용: [촬영방식] + [크롭/구도] + [오브젝트] + [배경] + [앵글] + [빛] + [톤/무드]
-- 패션 특화: 오브젝트(의류) 묘사에 올인, 나머지 요소는 필요시에만 최소 추가
-- 패션 프롬프트 요청 시 이 서브 템플릿 우선 적용, 촬영/아트 프롬프트는 기존 범용 구조 유지
-
----
-
-### 2단계 캐릭터 드레싱 워크플로우
-
-**적용 조건:** 특정 캐릭터/인물에게 디자인한 의상을 입히는 이미지를 생성할 때
-
-**원리:** 관심사 분리 — 1단계에서 의상 레퍼런스를 확보하고, 2단계에서 캐릭터에 이미지 레퍼런스로 이식. 텍스트로 의류 디테일을 반복 서술하지 않는다.
-
-**워크플로우:**
-
-1단계 — 의상 레퍼런스 생성
-- 위 패션 서브 템플릿으로 의상 스펙 프롬프트 작성
-- 의류 디테일에 올인, 모델/캐릭터는 신경 쓰지 않음
-- 결과물: 의상이 명확히 보이는 레퍼런스 이미지 확보
-
-2단계 — 캐릭터 + 의상 합성
-- Image 1(캐릭터) + Image 2(1단계 의상 레퍼런스)를 함께 입력
-- 텍스트 프롬프트는 촬영 조건만 담당, 의류 디테일은 이미지가 전달
-- 프롬프트 구조: [캐릭터 지시] + [의상 지시] + [촬영 조건]
-
-**2단계 프롬프트 예시:**
-```
-THE CHARACTER FROM IMAGE 1 WEARING THIS OUTFIT FROM IMAGE 2.
-FULL BODY SHOT, WHITE STUDIO BACKGROUND,
-SOFT CINEMATIC LIGHTING, REALISTIC.
-```
-
-**2단계 촬영 조건 옵션 (필요시 선택 추가):**
-- 크롭: full body shot / waist-up / three-quarter
-- 배경: white studio / concrete floor / solid color
-- 조명: soft cinematic lighting / flat studio lighting / dramatic side lighting
-- 출력 형태: character sheet (front + back + face close-up) / single pose
-- 스타일: realistic / stylized / editorial
-
-**주의사항:**
-- 2단계에서 의류 디테일을 텍스트로 다시 쓰지 말 것 — 이미지 레퍼런스와 텍스트가 충돌하면 반영률이 떨어짐
-- 캐릭터 시트(다면도)가 필요하면 "character sheet, front view and back view, face close-up" 추가
-- 색상 괴리가 1단계에서 발생했을 경우, 2단계에서 캐릭터 피부톤 차이로 자연 보정될 수 있음
-
----
-
-### 크리처/오브젝트 디자인 AI 프롬프트 서브 템플릿
-
-**적용 조건:** 몬스터, 에일리언, 판타지 생물, 메카, 무기, 아이템 등 비인간 오브젝트 디자인 프롬프트 요청 시 자동 적용
-
-**구조 (전체→부분→표면 줌인 순서):**
-[1블록: 전체 형태/실루엣] → [2블록: 표면 질감/핵심 디테일 + 포즈] → [3블록: 렌더링/촬영 조건]
-
-**핵심 원칙:**
-1. 전체→부분→표면 줌인 — 먼저 전체 골격/실루엣을 잡고(arachnid-like body structure), 그 다음 부위별 디테일(serrated limb-blades, armored carapace), 마지막으로 표면 재질(cracked stone-like hide)
-2. 추상어 제로, 물성 100% — "scary" "terrifying" 금지 → 구조와 재질로 감정을 유도. 위협감은 jagged spines, serrated blades 같은 물리적 묘사로 전달
-3. 혼합 물성(Material Mixing) — 서로 다른 재질을 하나의 표면에 레이어링하여 비현실적 존재감 생성 (예: "hardened shell + wet organic tissue + cracked stone-like hide")
-4. 포즈는 자세+방향만 — "low crouching stance, front-facing" 처럼 물리적 자세만 지시. "menacing"은 가능하나 이것도 포즈의 인상 정도로만 사용
-5. 렌더링 조건은 프로덕트 렌더 스타일 권장 — "white background, soft shadow beneath, product-render style lighting"으로 디자인 시트처럼 깔끔하게 뽑아낼 것. 배경이 복잡하면 디테일 반영률이 떨어짐
-
-**작성 예시:**
-```
-A MASSIVE ALIEN CREATURE WITH AN ARACHNID-LIKE BODY STRUCTURE,
-MULTIPLE LONG SERRATED LIMB-BLADES SPLAYED WIDE,
-HEAVY ARMORED CARAPACE COVERED IN JAGGED SPINES AND ORGANIC PLATING.
-
-GLOWING MOLTEN CORE VISIBLE AT THE CHEST.
-TEXTURED SURFACE MIXING HARDENED SHELL,
-WET ORGANIC TISSUE, AND CRACKED STONE-LIKE HIDE.
-LOW CROUCHING STANCE, FRONT-FACING, MENACING.
-
-WHITE BACKGROUND, SOFT SHADOW BENEATH,
-PRODUCT-RENDER STYLE LIGHTING.
-HYPER-DETAILED, CINEMATIC REALISM.
-```
-
-**혼합 물성 조합 레퍼런스:**
-- 유기체: chitin + wet membrane + exposed sinew
-- 기계+유기: corroded metal plating + pulsing bio-luminescent veins
-- 석재+유기: volcanic rock surface + glowing magma cracks + leathery skin folds
-- 결빙: frosted crystal shell + semi-transparent ice + dark fluid underneath
-
-**캐릭터 드레싱 워크플로우와 조합 가능:**
-- 1단계에서 크리처 레퍼런스를 확보한 뒤, 2단계에서 특정 씬/환경에 배치하거나 캐릭터와 합성할 수 있음
-- 2단계 프롬프트: "THE CREATURE FROM IMAGE 1 IN [환경/씬]. [카메라 앵글], [조명], [스타일]."
-
----
-
-### AI 영상/애니메이션 프롬프트 보강 원칙
-
-**적용 조건:** Seedance, Sora, Kling, Runway 등 AI 영상 생성 모델용 프롬프트 요청 시 자동 적용. 기존 영상 구조(SHOT 0X + 카메라무브 + 피사체행동 + 재질디테일 + 라이팅)에 아래 원칙을 추가 적용한다.
-
-**프롬프트 3단계 레이어 구조:**
-
-① 스타일 레이어 — 시각적 언어를 정의
-- 예술적 사조/스타일 키워드를 문장 맨 앞에 배치한다
-- 예: `2D French graphic novel style`, `stop motion style`, `claymation style`, `low poly, toy`, `ink outlines, screen tone`
-- 질감+빛 키워드를 함께 붙여 분위기 일관성 확보: `clay texture, soft morning light`, `moody lighting`
-
-② 서사 레이어 — 초 단위 동작 분해 + 카메라 워크
-- 추상적 행동 설명 금지 → 초 단위 동작 시퀀스로 분해
-- 나쁜 예: "남자가 도망간다"
-- 좋은 예: "남자가 펜스 위를 기어오르고, 당황하며 시계를 두 번 두드리고, 사라지기 직전 1초간 카메라를 응시한다"
-- 영화 촬영 용어(Medium shot, Extreme slow-mo, Pan up, Dolly in)를 프롬프트에 포함
-
-③ 일관성 레이어 — 시각적 연속성 유지
-- 반복 등장하는 소품(시계, 무기 등)은 별도 프롭 시트(Prop Sheet) 이미지를 만들어 레퍼런스로 투입
-- 새 장면 생성 시 이전 영상(Previous Video)을 입력 데이터로 함께 넣어, 캐릭터 외형과 이펙트의 연속성 유지
-- 이는 에셋 분리 파이프라인의 시간축 확장 — 공간적 분리(얼굴/의상/배경)뿐 아니라 시간적 연속성도 이미지 레퍼런스로 관리
-- 레퍼런스 이미지 콜라주: 캐릭터의 클로즈업 + 전신 샷을 하나의 콜라주 이미지로 만들어 입력하면 AI가 외형을 더 정확히 파악
-- 장면 전환 시 프레임 추출: 이전 영상의 마지막 프레임 + 다음 영상의 첫 프레임을 레퍼런스로 추가하여 끊김 방지
-- 레퍼런스 이미지 품질이 출력 품질을 결정 — 투입 전 반드시 고화질 업스케일링
-
-**스타일 변환 키워드 레퍼런스:**
-- 치비/토이: `low poly, toy, miniature figure`
-- 망가: `ink outlines, screen tone, speech bubbles, kanji effects`
-- 실사+2D 혼합: `2D character in live action, contrast between flat illustration and photorealistic background`
-- 클레이메이션: `claymation style, clay texture, stop motion`
-- 그래픽노블: `2D French graphic novel style, bold ink lines, muted palette`
-
-**제작 효율 원칙:**
-- 이미지 수정 우선 — 비디오를 새로 생성하기 전에 키프레임 이미지를 먼저 수정(인페인팅)한 뒤 비디오화
-- 15초 법칙 — 모든 장면을 15초 이내(안정적 권장 10초)로 유지. 길어지면 AI의 시각적 일관성이 깨지고 편집 복잡도가 급상승
-- AI 창의성 활용 — 새 캐릭터나 예측 불가능한 요소는 과도한 지시 없이 상황만 던져주면 앞선 맥락 기반으로 AI가 자체 디자인하도록 유도
-- 네거티브 키워드 — 편집 편의를 위해 프롬프트 끝에 "no words", "no music" 등 불필요한 요소 차단 키워드 추가
-- 글자수 제한 의식 — 대부분의 영상 모델은 1,500자 내외 제한. 핵심 위주로 작성하되, 넘치면 디테일 vs 자율성 판단 기준에 따라 간결화
-- 텍스트는 방향, 이미지는 디테일 — 텍스트 프롬프트는 전체 방향과 액션을 지시하고, 실제 디테일과 일관성은 레퍼런스 이미지로 통제한다
-
-**보강 원칙 1: 물리 법칙 프롬프팅**
-- 행동(Action)이 아니라 행동의 물리적 결과(Consequence)를 서술한다
-- 상황 설명(Caption)을 금지하고, 충격·반동·무게감·관성·여파를 직접 묘사한다
-- 이를 통해 AI가 사실적인 질감, 질량, 운동감을 렌더링하도록 유도한다
-
-나쁜 예 vs 좋은 예:
-```
-❌ THE MECH PUNCHES THE MONSTER.
-✅ THE MECH'S FIST CONNECTS WITH THE MONSTER'S TORSO —
-   SHOCKWAVE RIPPLES THROUGH ITS CARAPACE,
-   FRAGMENTS OF CHITIN BURST OUTWARD,
-   THE MECH'S ARM RECOILS FROM THE IMPACT,
-   GROUND CRACKS BENEATH BOTH FROM THE TRANSFERRED FORCE.
-```
-
-```
-❌ THE GIANT ROBOT WALKS FORWARD.
-✅ EACH STEP OF THE MECH SINKS INTO CRACKED ASPHALT,
-   DUST PLUMES RISE FROM THE FOOTFALL,
-   HYDRAULIC JOINTS HISS UNDER THE SHIFTING WEIGHT,
-   NEARBY DEBRIS TREMBLES WITH EACH STRIDE.
-```
-
-**보강 원칙 2: 디테일 vs 자율성 판단 기준**
-- 모든 샷에 동일한 수준의 디테일을 넣지 않는다
-- 아래 기준에 따라 프롬프트의 구체성 수준을 조절한다
-
-디테일을 최대로 넣어야 하는 경우:
-- 물리적 충돌/액션 장면 (물리 법칙 프롬프팅 적용)
-- 특정 오브젝트의 디자인이 중요한 클로즈업
-- 감정 표현이 서사에 핵심인 장면
-
-AI 자율성을 믿고 간결하게 쓸 경우:
-- 리듬/음악 기반 동작 (춤, 군무 등) — AI가 리듬감을 자체 해석하도록 유도
-- 군중 씬이나 환경 전체를 보여주는 와이드샷
-- 전환(Transition) 장면 — 과도한 지시가 오히려 부자연스러운 결과를 만듦
-
-간결한 프롬프트 예시:
-```
-FIVE CHARACTERS IN SYNCHRONIZED K-POP CHOREOGRAPHY,
-DYNAMIC CAMERA CIRCLING THE GROUP,
-HIGH ENERGY, STAGE LIGHTING.
-```
-
-**보강 원칙 3: 에셋 분리 파이프라인 (다중 캐릭터 프로젝트)**
-- 복수 캐릭터가 등장하는 프로젝트에서는 에셋을 분리 생성 후 병합한다
-- 얼굴, 의상, 크리처, 메카, 배경을 각각 독립적으로 생성 → 레퍼런스 이미지로 확보 → 최종 씬 합성 시 이미지 레퍼런스로 투입
-- 이는 2단계 캐릭터 드레싱 워크플로우의 확장이며, 캐릭터뿐 아니라 세계관 전체 에셋에 동일 원리를 적용한다
-
-에셋 분리 순서:
-1. 캐릭터 얼굴 레퍼런스 (각 캐릭터별 독립 생성)
-2. 의상 레퍼런스 (패션 서브 템플릿 적용)
-3. 캐릭터 + 의상 병합 (2단계 워크플로우)
-4. 크리처/메카/소품 레퍼런스 (크리처 서브 템플릿 적용)
-5. 배경/환경 레퍼런스 (범용 구조 적용)
-6. 최종 씬 합성 — 확보된 이미지 레퍼런스 + 최소 텍스트 프롬프트(카메라/액션/조명)
-
----
-
-### 프롬프트 요청 시 작동 규칙
-
-**프롬프트를 요청받으면 바로 작성하지 말고, 아래 프로세스를 따른다.**
-
-**Step 1: 유형 판별**
-요청을 아래 중 하나로 분류한다:
-- A) 패션/의류 → 패션 서브 템플릿 기반 질문
-- B) 크리처/오브젝트 → 크리처 서브 템플릿 기반 질문
-- C) 영상/애니메이션 → 영상 보강 원칙 기반 질문
-- D) 범용 이미지 → 범용 구조 기반 질문
-- E) 2단계 워크플로우 (캐릭터 드레싱 / 씬 합성) → 레퍼런스 확인 질문
-
-**Step 2: 핵심 디테일 질문 (1~3개)**
-해당 템플릿의 필수 블록 중 빠진 정보를 질문한다. 한 번에 최대 3개까지만 묻는다.
-
-패션(A)일 때 확인할 것:
-- 어떤 아이템 조합인지 (상의/하의/신발/액세서리)
-- 소재와 마감 (latex, denim, velvet 등 — 물성 수준)
-- 전체 무드 방향 (tactical, editorial, streetwear 등)
-
-크리처(B)일 때 확인할 것:
-- 전체 실루엣/골격 (곤충형, 파충류형, 기계혼합 등)
-- 핵심 물성 조합 (어떤 재질들을 섞을 것인지)
-- 용도 (게임 에셋, 컨셉아트, 캐릭터시트 등)
-
-영상(C)일 때 확인할 것:
-- 스타일 레이어 (리얼리즘, 클레이메이션, 망가 등)
-- 핵심 액션/서사 (무엇이 일어나는 장면인지)
-- 카메라 워크 선호 (있다면)
-
-범용 이미지(D)일 때 확인할 것:
-- 핵심 오브젝트/피사체
-- 분위기/톤 방향
-- 용도 (SNS, 포트폴리오, 레퍼런스 등)
-
-**Step 3: 답변 수렴 후 프롬프트 작성**
-질문에 대한 답변을 받으면, 해당 템플릿 구조에 맞춰 프롬프트를 작성한다. 추가 디테일이 필요하면 1개씩만 더 묻는다.
-
-**예외: 사용자가 이미 충분한 디테일을 제공한 경우**
-요청 자체에 소재, 구조, 스타일, 촬영 조건이 구체적으로 포함되어 있으면 질문 없이 바로 작성한다.</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROMPT -->
-    <section id="prompt" class="tab-content hidden">
-      <h2 class="section-title" data-i18n="nav_prompt">Prompt</h2>
-      <div class="card-grid prompt-grid">
-
-        <div class="pcard" data-modal="modal-seedance">
-          <div class="card-tag" data-i18n="prompt_card_tag">Tutorial</div>
-          <div class="pcard-thumb">
-            <img src="https://img.youtube.com/vi/tYJQusOS2jI/maxresdefault.jpg" alt="Seedance 2.0 Thumbnail">
-            <div class="pcard-play">&#9654;</div>
-          </div>
-          <div class="pcard-title" data-i18n="prompt_card_title">Seedance 2.0 프롬프팅 튜토리얼과 클로드 프롬프트 생성 Skill 추가하기</div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- MODAL: Seedance -->
-    <div class="modal-overlay hidden" id="modal-seedance">
-      <div class="modal-box">
-        <button class="modal-close" onclick="closeModal()">&times;</button>
-        <div class="card-tag" data-i18n="prompt_card_tag">Tutorial</div>
-        <h2 class="modal-title" data-i18n="prompt_card_title">Seedance 2.0 프롬프팅 튜토리얼과 클로드 프롬프트 생성 Skill 추가하기</h2>
-        <a class="video-thumb-link" href="https://www.youtube.com/watch?v=tYJQusOS2jI&t=3s" target="_blank" rel="noopener">
-          <div class="video-thumb-wrap">
-            <img src="https://img.youtube.com/vi/tYJQusOS2jI/maxresdefault.jpg" alt="Seedance 2.0 Tutorial Thumbnail">
-            <div class="play-btn">&#9654;</div>
-          </div>
-        </a>
-        <p class="video-notice" data-i18n-html="modal_notice">아래 버튼으로 <strong>Claude 전용 Skill 파일</strong>을 바로 다운로드하세요. 다운로드 후 아래 방법으로 Claude에 추가하면 됩니다.</p>
-        <a class="skill-dl-btn" href="https://drive.google.com/drive/folders/1_Y0nBQH7kQSF5oYYwje6XMWCVHUbidSY" target="_blank" rel="noopener" data-i18n="skill_dl_btn">바로 Skill 파일 다운로드 받기 ↓</a>
-        <div class="skill-guide">
-          <div class="skill-guide-title" data-i18n="modal_skill_title">Claude에 Skill 추가하는 법</div>
-          <ol class="skill-steps">
-            <li data-i18n-html="modal_skill_1">위 버튼에서 <code>.skill</code> 파일 다운로드</li>
-            <li data-i18n-html="modal_skill_2">Claude 접속 → 우측 상단 프로필 → <strong>Settings</strong></li>
-            <li data-i18n-html="modal_skill_3"><strong>Claude.ai Features → Skills</strong> 항목으로 이동</li>
-            <li data-i18n-html="modal_skill_4"><strong>Add Skill</strong> 클릭 후 다운로드한 파일 업로드 또는 내용 붙여넣기</li>
-            <li data-i18n-html="modal_skill_5">저장 후 Claude 대화창에서 <code>/</code> 를 입력하면 Skill 목록이 나타남</li>
-          </ol>
-        </div>
-        <div class="video-body">
-          <p data-i18n-html="modal_intro_1">해당 영상은 Higgsfield 플랫폼에서 제공하는 새로운 AI 비디오 모델인 <strong>Seedance 2.0</strong>과 <strong>Claude AI</strong>를 결합하여 압도적인 퀄리티의 영상을 제작하는 구체적인 워크플로우를 다루고 있습니다.</p>
-          <p data-i18n="modal_intro_2">영상의 핵심 내용은 크게 4가지 파트로 나눌 수 있습니다.</p>
-          <div class="chapter">
-            <div class="chapter-num">1</div>
-            <div class="chapter-content">
-              <div class="chapter-title" data-i18n-html="modal_ch1_title">Claude AI를 활용한 마스터급 프롬프트 생성 <span class="timestamp">00:48</span></div>
-              <p data-i18n-html="modal_ch1_p1"><strong>커스텀 Skill 활용:</strong> 크리에이터가 무료로 배포한 Claude 전용 스킬을 설치하여, AI가 조명, 카메라 워크, 색상 코드, 대기 효과 등 고도의 VFX 전문가 수준의 용어를 사용해 프롬프트를 작성하도록 만듭니다.</p>
-              <p data-i18n-html="modal_ch1_p2"><strong>디테일한 연출 제어:</strong> 영상을 2초 단위의 컷으로 나누거나 하나의 매끄러운 롱테이크(Seamless transition)로 만들도록 지시할 수 있으며, Seedance의 글자 수 제한(약 3,000~4,000자)에 맞춰 프롬프트 분량을 조절하는 팁을 제공합니다.</p>
-            </div>
-          </div>
-          <div class="chapter">
-            <div class="chapter-num">2</div>
-            <div class="chapter-content">
-              <div class="chapter-title" data-i18n-html="modal_ch2_title">실제 촬영 영상과 AI의 자연스러운 합성 <span class="timestamp">06:12</span></div>
-              <p data-i18n-html="modal_ch2_p1">스마트폰으로 촬영한 실제 영상 중 특정 프레임을 캡처하여 Seedance 2.0의 <strong>시작 프레임(Start Frame)</strong>으로 업로드합니다.</p>
-              <p data-i18n="modal_ch2_p2">예를 들어, '손목시계를 터치하는 순간'의 이미지를 넣고 프롬프트를 입력하면, 홀로그램 UI가 나타나고 뒤에서 공룡이 포효하며 나타나는 복잡한 3D 트랜지션 씬을 단 한 번의 생성으로 완성할 수 있습니다.</p>
-            </div>
-          </div>
-          <div class="chapter">
-            <div class="chapter-num">3</div>
-            <div class="chapter-content">
-              <div class="chapter-title" data-i18n-html="modal_ch3_title">Omni-Reference를 통한 캐릭터 및 세계관 유지 <span class="timestamp">12:52</span></div>
-              <p data-i18n="modal_ch3_p1">단일 이미지가 아닌 '캐릭터 시트(설정화)'와 '배경 이미지' 등의 다양한 레퍼런스를 동시에 제공하여 AI에게 맥락을 부여하는 기술입니다.</p>
-              <p data-i18n="modal_ch3_p2">이를 통해 카메라 앵글이 바뀌거나 컷이 넘어가도 동일한 캐릭터의 외형을 완벽하게 유지할 수 있습니다. 고개를 숙이고 있다가 얼굴을 드는 씬에서도 제공된 캐릭터 시트를 기반으로 정확한 얼굴을 구현해 내는 등 일관된 스토리텔링이 가능해집니다.</p>
-            </div>
-          </div>
-          <div class="chapter">
-            <div class="chapter-num">4</div>
-            <div class="chapter-content">
-              <div class="chapter-title" data-i18n-html="modal_ch4_title">마케팅(광고) 및 3D 텍스트 통합 연출 <span class="timestamp">10:16</span></div>
-              <p data-i18n-html="modal_ch4_p1"><strong>초고속 광고 영상 제작:</strong> 커스텀 프롬프트를 활용해 15초 분량의 고품질 Meta 광고 영상을 하루에도 수십 개씩 찍어낼 수 있는 마케팅 활용성을 보여줍니다.</p>
-              <p data-i18n-html="modal_ch4_p2"><strong>애프터 이펙트 대체 <span class="timestamp">16:09</span>:</strong> 텍스트 이미지와 배경 이미지를 함께 업로드하면, AI가 공간의 원근감과 조명 그림자를 계산하여 3D 텍스트를 영상 환경 속에 완벽하게 합성해 줍니다.</p>
-            </div>
-          </div>
-          <p class="summary" data-i18n="modal_summary">요약하자면, 이 영상은 Claude를 통해 전문가 수준의 프롬프트를 구조화하고, Seedance 2.0의 다중 이미지 인식 기능(Omni-Reference)을 활용하여 기존의 복잡한 3D 모델링이나 특수효과 작업 없이도 한 편의 영화나 광고를 만들어내는 혁신적인 AI 워크플로우를 소개하고 있습니다.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- REFERENCE -->
-    <section id="reference" class="tab-content hidden">
-      <h2 class="section-title" data-i18n="nav_reference">Reference</h2>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-tag" data-i18n="ref1_tag">모델 허브</div>
-          <h3>CivitAI</h3>
-          <p data-i18n="ref1_desc">Stable Diffusion 계열 모델, LoRA, Embedding을 공유하는 최대 커뮤니티. 검색 필터로 원하는 스타일의 모델을 쉽게 찾을 수 있습니다.</p>
-          <div class="card-meta">civitai.com</div>
-        </div>
-        <div class="card">
-          <div class="card-tag" data-i18n="ref1_tag">모델 허브</div>
-          <h3>Hugging Face</h3>
-          <p data-i18n="ref2_desc">오픈소스 AI 모델의 허브. Wan2.1, HunyuanVideo 등 주요 영상 생성 모델을 다운로드할 수 있습니다.</p>
-          <div class="card-meta">huggingface.co</div>
-        </div>
-        <div class="card">
-          <div class="card-tag" data-i18n="ref3_tag">커뮤니티</div>
-          <h3>Reddit r/StableDiffusion</h3>
-          <p data-i18n="ref3_desc">SD 관련 최신 정보, 팁, 워크플로우를 공유하는 가장 활성화된 영어권 커뮤니티입니다.</p>
-          <div class="card-meta">reddit.com/r/StableDiffusion</div>
-        </div>
-        <div class="card">
-          <div class="card-tag" data-i18n="ref4_tag">워크플로우</div>
-          <h3>OpenArt Workflows</h3>
-          <p data-i18n="ref4_desc">ComfyUI 워크플로우를 공유하고 바로 불러올 수 있는 플랫폼. 복잡한 파이프라인을 빠르게 시작할 수 있습니다.</p>
-          <div class="card-meta">openart.ai/workflows</div>
-        </div>
-        <div class="card">
-          <div class="card-tag" data-i18n="ref5_tag">클라우드</div>
-          <h3>RunPod / Vast.ai</h3>
-          <p data-i18n="ref5_desc">로컬 GPU가 없어도 고사양 GPU를 시간당 렌탈하여 AI 영상 생성을 할 수 있는 클라우드 서비스입니다.</p>
-          <div class="card-meta">runpod.io / vast.ai</div>
-        </div>
-        <div class="card">
-          <div class="card-tag" data-i18n="ref6_tag">유튜브</div>
-          <h3>Olivio Sarikas</h3>
-          <p data-i18n="ref6_desc">SD, ComfyUI, 영상 생성 관련 튜토리얼을 꾸준히 업로드하는 유튜브 채널. 초보자부터 고급 사용자까지 유용합니다.</p>
-          <div class="card-meta">YouTube</div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
-</body>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+    <script>
+      const revealItems = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -40px" },
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+
+      const progressBar = document.querySelector(".scroll-progress span");
+      let progressTicking = false;
+
+      const updateProgress = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+        progressBar.style.transform = `scaleY(${progress})`;
+        progressTicking = false;
+      };
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (progressTicking) return;
+          progressTicking = true;
+          requestAnimationFrame(updateProgress);
+        },
+        { passive: true },
+      );
+
+      updateProgress();
+    </script>
+  </body>
 </html>
